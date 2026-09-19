@@ -1,0 +1,1457 @@
+:root {
+	/* Brand Accent Colors */
+	--accent: #ff3366;          /* Το βασικό ροζ της μουσικής σκηνής */
+	--accent-hover: #ff6699;    /* Πιο ανοιχτό ροζ για hover */
+	--accent-active: #ff1a53;   /* Πιο σκούρο ροζ για κλικ/ενεργά στοιχεία */
+
+	/* Background Colors */
+	--bg-primary: #0b0b0b;      /* Το πολύ σκούρο φόντο του site */
+	--bg-secondary: #121212;    /* Ελαφρώς πιο ανοιχτό γκρι για section blocks */
+	--bg-mobile-menu: #0d0d0d;  /* Το φόντο του μενού στα κινητά */
+	--bg-footer: #080808;       /* Το φόντο του footer */
+	--bg-header: rgba(11, 11, 11, 0.95); /* Ημιδιαφανές φόντο header */
+
+	/* Text Colors */
+	--text-primary: #eeeeee;    /* Το βασικό off-white κείμενο */
+	--text-light: #ffffff;       /* Καθαρό λευκό για έντονους τίτλους */
+	--text-about: #cccccc;      /* Απαλό γκρι για τα paragraphs του About */
+	--text-muted: #aaaaaa;      /* Γκρι για τα links του μενού */
+	--text-grey: #888888;       /* Σκούρο γκρι για δευτερεύουσες πληροφορίες */
+	--text-dark-muted: #555555; /* Πολύ σκούρο γκρι για το copyright στο footer */
+
+	/* Borders */
+	--border-primary: #1a1a1a;  /* Διαχωριστικό header & mobile menu */
+	--border-secondary: #222222;/* Διαχωριστικό στα gig items */
+	--border-footer: #111111;   /* Διαχωριστικό footer */
+	
+	/* Jazz Palette Custom Addition */
+	--jazz-blue: #8ac5e0;       /* Το cool γαλάζιο του jazz-man */	
+}
+
+/* Base Reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* --- Custom Scrollbar Styles --- */
+/* Για σύγχρονους browsers (Firefox κλπ.) */
+html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--accent) var(--bg-secondary);
+}
+
+/* Για Chrome, Edge, Safari και Opera */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+/* Το υπόβαθρο της scrollbar */
+::-webkit-scrollbar-track {
+	background: var(--bg-secondary); 
+}
+
+/* Το "κουμπί" που σέρνεις */
+::-webkit-scrollbar-thumb {
+	background: var(--accent);
+	border-radius: 5px;
+	border: 2px solid var(--bg-secondary);
+}
+
+/* Hover στο κουμπί της scrollbar */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--accent-hover);
+}
+
+body {
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	background-color: var(--bg-primary);
+	color: var(--text-primary);
+	line-height: 1.6;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+a:hover {
+	color: var(--accent-hover);
+}
+
+/* Navigation */
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem 5%;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background: var(--bg-header);
+	backdrop-filter: blur(8px);
+	z-index: 1000;
+	border-bottom: 1px solid var(--border-primary);
+}
+
+.logo {
+	font-weight: 800;
+	font-size: 1.4rem;
+	letter-spacing: 3px;
+	color: var(--text-light);
+	z-index: 1001;
+}
+
+.nav-menu ul {
+	display: flex;
+	list-style: none;
+}
+
+.nav-menu ul li {
+	margin-left: 2rem;
+}
+
+.nav-menu ul li a {
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+	color: var(--text-light);
+}
+
+/* Το κουμπί Hamburger (κρυμμένο σε desktop) */
+.hamburger {
+	display: none;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 30px;
+	height: 21px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	z-index: 1001;
+	padding: 0;
+}
+
+.hamburger .bar {
+	width: 100%;
+	height: 3px;
+	background-color: var(--text-light);
+	border-radius: 2px;
+	transition: all 0.3s ease-in-out;
+}
+
+/* Language Switcher */
+.lang-switcher {
+	display: flex;
+	align-items: center;
+	margin-left: 0.5rem;
+}
+
+.lang-switcher a {
+	display: flex;
+	align-items: center;
+	transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.flag-icon {
+	width: 24px;
+	height: auto;
+	border-radius: 4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.lang-switcher a:hover {
+	transform: scale(1.1);
+	opacity: 0.9;
+}
+
+/* Hero Section */
+.hero {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 0 1rem;
+	background: linear-gradient(rgba(0,0,0,0.5), var(--bg-primary)), url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+}
+
+.hero h1 {
+	font-size: 2,5rem;
+	margin-bottom: 0.5rem;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	color: var(--text-light);
+}
+
+.hero p {
+	font-size: 1.3rem;
+	color: var(--accent);
+	font-weight: 500;
+	letter-spacing: 2px;
+	margin-bottom: 2rem;
+}
+
+.cta-btn {
+	background-color: var(--accent);
+	color: var(--text-light);
+	padding: 0.8rem 2rem;
+	border-radius: 50px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: background 0.3s, transform 0.2s;
+}
+
+.cta-btn:hover {
+	background-color: var(--accent-active);
+	color: var(--text-light);
+	transform: translateY(-2px);
+}
+
+/* Media / Video Section */
+.section {
+	padding: 6rem 5%;
+	scroll-margin-top: 50px;
+}
+
+.section-title {
+	font-size: 2rem;
+	margin-bottom: 3rem;
+	text-align: center;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	position: relative;
+}
+
+.section-title::after {
+	content: '';
+	display: block;
+	width: 50px;
+	height: 3px;
+	background-color: var(--accent);
+	margin: 10px auto 0;
+}
+
+.video-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+	gap: 2rem;
+}
+
+.video-wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+	height: 0;
+	background-color: var(--border-primary);
+}
+
+.video-wrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+/* Tour / Gigs Section */
+.gigs-bg {
+	background-color: var(--bg-secondary);
+}
+
+.gigs-list {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.gig-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--border-secondary);
+}
+
+.gig-date {
+	font-weight: bold;
+	color: var(--accent);
+	width: 200px;
+}
+
+.gig-details {
+	flex-grow: 1;
+}
+
+.gig-venue {
+	font-weight: bold;
+	color: var(--text-light);
+}
+
+.gig-city {
+	color: var(--text-grey);
+	font-size: 0.9rem;
+}
+
+.gig-btn {
+	border: 1px solid var(--accent);
+	padding: 0.5rem 1.2rem;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 4px;
+}
+
+.gig-btn:hover {
+	background-color: var(--accent);
+	color: var(--text-light);
+}
+
+/* About / Gear Section */
+.about-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4rem;
+	align-items: center;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.about-text {
+	flex: 1.2;
+	min-width: 300px;
+}
+
+.about-text p {
+	margin-bottom: 1.2rem;
+	color: var(--text-about);
+}
+
+.gear-list {
+	margin-top: 2rem;
+	background: var(--bg-secondary);
+	padding: 1.5rem;
+	border-left: 3px solid var(--jazz-blue);
+	border-radius: 0 8px 8px 0;
+}
+
+.gear-list h4 {
+	margin-bottom: 0.5rem;
+	color: var(--text-light);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 1rem;
+}
+
+.gear-list p {
+	margin-bottom: 0;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: var(--text-muted);
+}
+
+.about-img {
+	flex: 0.8;
+	min-width: 300px;
+}
+
+.about-img img {
+	width: 100%;
+	border-radius: 8px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+	border: 1px solid var(--border-primary);
+}
+
+/* --- Works / Table Section --- */
+.works-section {
+	max-width: 1100px;
+	margin: 5rem auto 0 auto;
+	padding-top: 3rem;
+	border-top: 1px solid var(--border-primary);
+}
+
+.works-title {
+	font-size: 1.8rem;
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: var(--text-light);
+	position: relative;
+	display: inline-block;
+}
+
+.works-title::after {
+	content: '';
+	display: block;
+	width: 40px;
+	height: 3px;
+	background-color: var(--jazz-blue);
+	margin-top: 8px;
+}
+
+.works-table-wrapper {
+	overflow-x: auto; /* Για να μην χαλάει στα κινητά, δημιουργεί scrollbar στον πίνακα */
+	background: var(--bg-secondary);
+	border-radius: 8px;
+	border: 1px solid var(--border-primary);
+}
+
+.works-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	font-size: 0.95rem;
+}
+
+.works-table th {
+	background-color: rgba(255, 255, 255, 0.02);
+	color: var(--text-light);
+	padding: 1.2rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-bottom: 2px solid var(--border-primary);
+}
+
+.works-table td {
+	padding: 1.5rem 1.2rem;
+	border-bottom: 1px solid var(--border-secondary);
+	vertical-align: top;
+	line-height: 1.6;
+}
+
+.works-table tr:last-child td {
+	border-bottom: none; /* Αφαιρεί τη γραμμή στο τελευταίο στοιχείο */
+}
+
+/* Στήλη Κατηγορίας */
+.category-cell {
+	font-weight: bold;
+	color: var(--jazz-blue);
+	width: 250px;
+	text-transform: uppercase;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
+}
+
+/* Styling των έργων μέσα στον πίνακα */
+.works-table td strong {
+	color: var(--text-light);
+	display: inline-block;
+	margin-bottom: 0.2rem;
+	font-size: 1.05rem;
+}
+
+.works-table td span {
+	color: var(--text-about);
+}
+
+/* Responsive Μετατροπή Πίνακα για Κινητά */
+@media (max-width: 768px) {
+	.works-table, .works-table tbody, .works-table tr, .works-table td {
+		display: block; /* Ο πίνακας "ξεδιπλώνεται" κάθετα */
+		width: 100%;
+	}
+	
+	.works-table thead {
+		display: none; /* Κρύβουμε την κεφαλίδα του πίνακα στα κινητά */
+	}
+	
+	.works-table td {
+		padding: 1.2rem;
+	}
+	
+	.category-cell {
+		width: 100%;
+		padding-bottom: 0.2rem;
+		border-bottom: none;
+		font-size: 0.9rem;
+	}
+}
+
+/* Footer & Socials */
+footer {
+	text-align: center;
+	padding: 4rem;
+	background-color: var(--bg-footer);
+	border-top: 1px solid var(--border-footer);
+}
+
+.social-links {
+	margin-bottom: 1.5rem;
+}
+
+.social-links a {
+	margin: 0 1rem;
+	font-size: 1.1rem;
+	color: var(--text-grey);
+}
+
+.social-links a:hover {
+	color: var(--accent);
+}
+
+footer p {
+	color: var(--text-dark-muted);
+	font-size: 0.9rem;
+}
+
+/* Container για όλο το footer contact τμήμα */
+.footer-contact-container {
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 2rem 1rem;
+}
+
+/* --- EMAIL CALL-TO-ACTION (CTA) --- */
+.contact-cta {
+	margin-bottom: 3rem;
+}
+
+.contact-cta p {
+	color: var(--text-muted);
+	font-size: 1.1rem;
+	margin-bottom: 1rem;
+	letter-spacing: 0.5px;
+}
+
+/* Το κουμπί του email */
+.email-btn {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--bg-secondary), rgba(255, 51, 102, 0.05));
+	border: 1px solid rgba(255, 51, 102, 0.2);
+	padding: 1rem 2.5rem;
+	border-radius: 50px; /* Στρογγυλεμένο premium look */
+	text-decoration: none;
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.email-btn span {
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: var(--text-grey);
+	margin-bottom: 0.2rem;
+	transition: color 0.3s ease;
+}
+
+.email-btn .email-address {
+	font-size: 1.2rem;
+	color: var(--accent); /* Το neon ροζ */
+	font-weight: 700;
+	letter-spacing: 0.5px;
+}
+
+/* Hover εφέ για το email κουμπί */
+.email-btn:hover {
+	transform: translateY(-4px); /* Μικρό σήκωμα */
+	border-color: var(--accent);
+	box-shadow: 0 10px 20px rgba(255, 51, 102, 0.15); /* Απαλό ροζ glow */
+	background: linear-gradient(135deg, var(--bg-secondary), rgba(255, 51, 102, 0.1));
+}
+
+.email-btn:hover span {
+	color: var(--text-light);
+}
+
+
+/* --- SOCIAL LINKS BADGES --- */
+.social-links {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.social-badge {
+	text-decoration: none;
+	font-size: 0.9rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	padding: 0.6rem 1.5rem;
+	border-radius: 30px;
+	background: var(--bg-secondary);
+	color: var(--text-about);
+	border: 1px solid var(--border-primary);
+	transition: all 0.3s ease;
+}
+
+/* Hover εφέ κοινό για όλα τα social */
+.social-badge:hover {
+	transform: scale(1.08); /* Μεγαλώνει ελαφρώς */
+	color: var(--text-light);
+}
+
+/* Custom hover χρώματα ανάλογα με το δίκτυο, χρησιμοποιώντας την jazz παλέτα μας */
+.social-badge.yt:hover {
+	border-color: #ff3333; /* Κόκκινο YouTube */
+	box-shadow: 0 4px 12px rgba(255, 51, 51, 0.15);
+}
+
+.social-badge.ig:hover {
+	border-color: #e1306c; /* Instagram Pink */
+	box-shadow: 0 4px 12px rgba(225, 48, 108, 0.15);
+}
+
+.social-badge.sp:hover {
+	border-color: #1ed760; /* Spotify Green */
+	box-shadow: 0 4px 12px rgba(30, 215, 96, 0.15);
+}
+
+.social-badge.fb:hover {
+	border-color: var(--jazz-blue); /* Χρησιμοποιούμε το jazz-blue για το Facebook! */
+	box-shadow: 0 4px 12px rgba(138, 197, 224, 0.15);
+}
+
+/* Responsive για μικρές οθόνες κινητών */
+@media (max-width: 480px) {
+	.email-btn {
+		padding: 0.8rem 1.5rem;
+		width: 100%;
+	}
+	.email-btn .email-address {
+		font-size: 1rem;
+	}
+	.social-links {
+		gap: 0.6rem;
+	}
+	.social-badge {
+		padding: 0.5rem 1rem;
+		font-size: 0.8rem;
+		flex-grow: 1; /* Γεμίζουν το πλάτος στα κινητά */
+		text-align: center;
+	}
+}
+
+/* --- Responsive Σχεδιασμός (Κινητά & Tablet) --- */
+@media (max-width: 1350px) {
+	.hamburger {
+		display: flex;
+	}
+
+	/* Το μενού γίνεται slide-out overlay */
+	.nav-menu {
+		position: fixed;
+		top: 0;
+		right: -100%;
+		width: 70%;
+		height: 70vh;
+		background-color: var(--bg-mobile-menu);
+		border-left: 1px solid var(--border-primary);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		transition: right 0.4s ease-in-out;
+		z-index: 2000;
+	}
+
+	/* Όταν το μενού είναι ενεργό, γλιστράει μέσα στην οθόνη */
+	.nav-menu.active {
+		right: 0;
+	}
+
+	.nav-menu ul {
+		flex-direction: column;
+		align-items: center;
+		gap: 1.2rem;
+	}
+
+	.nav-menu ul li {
+		margin-left: 0;
+	}
+
+	.nav-menu ul li a {
+		font-size: 0.95rem;
+	}
+
+	/* Animation για το Hamburger όταν γίνεται "X" (κλείσιμο) */
+	.hamburger.active .bar:nth-child(1) {
+		transform: translateY(9px) rotate(45deg);
+		background-color: var(--accent);
+	}
+
+	.hamburger.active .bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger.active .bar:nth-child(3) {
+		transform: translateY(-9px) rotate(-45deg);
+		background-color: var(--accent);
+	}
+}
+
+@media (max-width: 600px) {
+	.video-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* --- LOGO STYLES (Καθαρά Jazz) --- */
+.logo {
+	font-weight: 800;
+	font-size: 1.4rem;
+	letter-spacing: 3px;
+	z-index: 1001;
+}
+
+.logo a {
+	color: var(--jazz-blue);
+	transition: opacity 0.3s ease;
+}
+
+.logo a:hover {
+	opacity: 0.8; /* Αντί για αλλαγή χρώματος, απλά "σβήνει" γλυκά στο hover */
+}
+
+/* --- ΠΟΥ ΑΛΛΟΥ ΜΠΟΡΕΙΣ ΝΑ ΒΑΛΕΙΣ ΤΟ ΓΑΛΑΖΙΟ ΓΙΑ ΔΕΣΙΜΟ --- */
+
+/* 1. Στη γραμμή του Gear (αντί για ροζ, το γαλάζιο δίνει ωραίο vintage/studio vibe) */
+.gear-list {
+	margin-top: 1.5rem;
+	background: var(--bg-secondary);
+	padding: 1.5rem;
+	border-left: 3px solid var(--jazz-blue); /* Αλλαγή σε γαλάζιο */
+}
+
+/* 2. Στα social links του footer όταν ο χρήστης περνάει το ποντίκι */
+.social-links a:hover {
+	color: var(--jazz-blue); /* Αλλαγή σε γαλάζιο για ομοιομορφία στο κλείσιμο της σελίδας */
+}
+
+/* About / Gear Section */
+.about-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4rem;
+	align-items: center;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.about-text {
+	flex: 1.2;
+	min-width: 300px;
+}
+
+.about-text p {
+	margin-bottom: 1.2rem;
+	color: var(--text-about);
+}
+
+.gear-list {
+	margin-top: 2rem;
+	background: var(--bg-secondary);
+	padding: 1.5rem;
+	border-left: 3px solid var(--accent-active);
+	border-radius: 0 8px 8px 0;
+}
+
+.gear-list h4 {
+	margin-bottom: 0.5rem;
+	color: var(--text-light);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 1rem;
+}
+
+.gear-list p {
+	margin-bottom: 0;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: var(--text-muted);
+}
+
+.about-img {
+	flex: 0.8;
+	min-width: 300px;
+}
+
+.about-img img {
+	width: 100%;
+	border-radius: 8px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+	border: 1px solid var(--border-primary);
+}
+
+.about-list{
+	margin-top: 2rem;
+	background: var(--bg-secondary);
+	padding: 1.5rem;
+	border-left: 3px solid var(--jazz-blue);
+	border-radius: 0 8px 8px 0;
+}
+
+/* --- Works / Table Section --- */
+.works-section {
+	max-width: 1100px;
+	margin: 5rem auto 0 auto;
+	padding-top: 3rem;
+	border-top: 1px solid var(--border-primary);
+}
+
+.works-title {
+	font-size: 1.8rem;
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: var(--text-light);
+	position: relative;
+	display: inline-block;
+}
+
+.works-title::after {
+	content: '';
+	display: block;
+	width: 40px;
+	height: 3px;
+	background-color: var(--jazz-blue);
+	margin-top: 8px;
+}
+
+.works-table-wrapper {
+	overflow-x: auto; /* Για να μην χαλάει στα κινητά, δημιουργεί scrollbar στον πίνακα */
+	background: var(--bg-secondary);
+	border-radius: 8px;
+	border: 1px solid var(--border-primary);
+}
+
+.works-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	font-size: 0.95rem;
+}
+
+.works-table th {
+	background-color: rgba(255, 255, 255, 0.02);
+	color: var(--text-light);
+	padding: 1.2rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-bottom: 2px solid var(--border-primary);
+}
+
+.works-table td {
+	padding: 1.5rem 1.2rem;
+	border-bottom: 1px solid var(--border-secondary);
+	vertical-align: top;
+	line-height: 1.6;
+}
+
+.works-table tr:last-child td {
+	border-bottom: none; /* Αφαιρεί τη γραμμή στο τελευταίο στοιχείο */
+}
+
+/* Στήλη Κατηγορίας */
+.category-cell {
+	font-weight: bold;
+	color: var(--jazz-blue);
+	width: 250px;
+	text-transform: uppercase;
+	font-size: 0.85rem;
+	letter-spacing: 1px;
+}
+
+/* Styling των έργων μέσα στον πίνακα */
+.works-table td strong {
+	color: var(--text-light);
+	display: inline-block;
+	margin-bottom: 0.2rem;
+	font-size: 1.05rem;
+}
+
+.works-table td span {
+	color: var(--text-about);
+}
+
+/* Responsive Μετατροπή Πίνακα για Κινητά */
+@media (max-width: 768px) {
+	.works-table, .works-table tbody, .works-table tr, .works-table td {
+		display: block; /* Ο πίνακας "ξεδιπλώνεται" κάθετα */
+		width: 100%;
+	}
+	
+	.works-table thead {
+		display: none; /* Κρύβουμε την κεφαλίδα του πίνακα στα κινητά */
+	}
+	
+	.works-table td {
+		padding: 1.2rem;
+	}
+	
+	.category-cell {
+		width: 100%;
+		padding-bottom: 0.2rem;
+		border-bottom: none;
+		font-size: 0.9rem;
+	}
+}
+
+/* --- CUSTOM TEXT SELECTION (HIGHLIGHT) --- */
+/* Όταν ο χρήστης επιλέγει κείμενο με το ποντίκι ή το δάχτυλο */
+::-moz-selection { /* Για Firefox */
+	background-color: var(--accent); /* Το neon ροζ σου (#ff3366) */
+	color: var(--text-light);        /* Λευκά γράμματα */
+}
+
+::selection { /* Για Chrome, Safari, Edge, Opera */
+	background-color: var(--accent); /* Το neon ροζ σου (#ff3366) */
+	color: var(--text-light);        /* Λευκά γράμματα */
+}
+
+
+/* --- CUSTOM SCROLLBAR (Για premium dark look) --- */
+/* 1. Το συνολικό πλάτος της scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* 2. Το background της διαδρομής (track) πίσω από τη scrollbar */
+::-webkit-scrollbar-track {
+	background: var(--bg-primary); /* Το μαύρο του site σου (#0b0b0b) */
+}
+
+/* 3. Το κινούμενο "χερούλι" (thumb) της scrollbar */
+::-webkit-scrollbar-thumb {
+	background: #222222; /* Ένα σκούρο γκρι για να είναι διακριτικό */
+	border-radius: 5px;
+	border: 2px solid var(--bg-primary); /* Δημιουργεί ένα κομψό κενό γύρω από το thumb */
+	transition: background 0.3s ease;
+}
+
+/* 4. Όταν ο χρήστης περνάει το ποντίκι πάνω από τη scrollbar */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--jazz-blue); /* Γίνεται γαλάζιο (jazz-blue) στο hover! */
+}
+
+/* --- SPOTIFY EMBED --- */
+.spotify-container {
+	max-width: 800px; /* Το κρατάμε ελαφρώς πιο μαζεμένο για να δείχνει premium */
+	margin: 4rem auto 0 auto; /* Απόσταση από τα YouTube βίντεο */
+	padding: 0 1rem;
+	text-align: center;
+}
+
+.spotify-title {
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: var(--text-light);
+}
+
+.spotify-iframe-wrapper {
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Απαλή σκιά για να "πατάει" όμορφα */
+	border-radius: 12px;
+	overflow: hidden;
+	background: var(--bg-secondary); /* Backup background μέχρι να φορτώσει το player */
+}
+
+.youtube-title{
+	max-width: 800px; /* Το κρατάμε ελαφρώς πιο μαζεμένο για να δείχνει premium */
+	margin: 4rem auto 0 auto; /* Απόσταση από τα YouTube βίντεο */
+	padding: 0 1rem;
+	text-align: center;
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: var(--text-light);
+}
+
+/* --- Guitar Lessons Section --- */
+.lessons-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.lessons-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    color: var(--text-about);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Το πλέγμα με τις κάρτες */
+.lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+/* Η κάρτα του μαθήματος */
+.lesson-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    padding: 2.5rem 1.8rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Hover εφέ στις κάρτες */
+.lesson-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--jazz-blue);
+    box-shadow: 0 10px 20px rgba(138, 197, 224, 0.05); /* Απαλό γαλάζιο glow */
+}
+
+.lesson-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.lesson-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.lesson-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Call to Action */
+.lessons-cta {
+    background: linear-gradient(135deg, rgba(255, 51, 102, 0.03), rgba(138, 197, 224, 0.03));
+    border: 1px solid var(--border-primary);
+    padding: 2rem;
+    border-radius: 12px;
+    display: inline-block;
+    width: 100%;
+    max-width: 700px;
+}
+
+.lessons-cta p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+}
+
+/* Κουμπί επικοινωνίας */
+.lessons-btn {
+    display: inline-block;
+    background-color: var(--accent); /* Το neon ροζ σου */
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.lessons-btn:hover {
+    background-color: #ff4d7d; /* Ελαφρώς πιο ανοιχτό ροζ στο hover */
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+}
+
+/* Responsive προσαρμογές */
+@media (max-width: 768px) {
+    .lessons-intro {
+        font-size: 1rem;
+    }
+    .lesson-card {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Container του Logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Ρυθμίσεις για την εικόνα του logo */
+.logo-img {
+    height: 80px; /* Ή όποιο ύψος έχεις ορίσει τώρα */
+    width: 300px;
+    display: block;
+    transition: transform 0.3s ease;
+	border-radius: 30px;
+}
+
+/* Hover εφέ (προαιρετικό αλλά πολύ όμορφο) */
+.logo-img:hover {
+    transform: scale(1.05); /* Μεγαλώνει ελάχιστα (5%) όταν περνάει το ποντίκι από πάνω */
+    opacity: 0.9; /* Γίνεται ελαφρώς πιο διάφανο */
+}
+
+/* --- FAQ ACCORDION --- */
+.faq-container {
+    max-width: 800px;
+    margin: 1.5rem auto 2rem auto; /* Μειώσαμε το πάνω margin από 5rem σε 1.5rem */
+    padding: 0 15px;
+    text-align: left;
+}
+
+.faq-title {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    text-align: center; /* Ο τίτλος κεντραρισμένος */
+}
+
+.faq-accordion {
+    border-top: 1px solid var(--border-primary);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-primary);
+}
+
+/* Κουμπί Ερώτησης */
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover εφέ στην ερώτηση */
+.faq-question:hover {
+    color: var(--jazz-blue); /* Αλλάζει σε γαλάζιο στο hover */
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--accent); /* Το neon ροζ σου */
+    transition: transform 0.3s ease;
+}
+
+/* Το container της απάντησης (κλειστό αρχικά) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding: 0;
+}
+
+.faq-answer p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* --- ACTIVE STATES (Όταν ανοίγει μια ερώτηση) --- */
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Επιτρέπει στην απάντηση να "ξεδιπλώσει" */
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg); /* Το "+" γίνεται "x" */
+    color: var(--jazz-blue);
+}
+
+.faq-item.active .faq-question {
+    color: var(--jazz-blue);
+}
+
+/* Ρυθμίσεις ειδικά για το απενεργοποιημένο Sold Out */
+.gig-btn.sold-out, 
+.gig-btn:disabled {
+    opacity: 0.5;                /* Γίνεται ελαφρώς πιο διάφανο για να φαίνεται "ανενεργό" */
+    cursor: not-allowed;         /* Το ποντίκι γίνεται το κόκκινο απαγορευτικό σύμβολο */
+    border-color: #555;          /* Σβήνει το έντονο ροζ περίγραμμα σε ένα απαλό γκρι */
+    color: var(--text-about);                 /* Γκριζάρει και το κείμενο */
+    pointer-events: none;        /* Απενεργοποιεί πλήρως οποιοδήποτε hover/click εφέ */
+    box-shadow: none;            /* Αφαιρεί τυχόν σκιές ή glows */
+    transform: none !important;  /* Εμποδίζει το κουμπί να "κουνηθεί" ή να μεγαλώσει */
+}
+
+/* --- BACK TO TOP BUTTON --- */
+.back-to-top {
+    position: fixed;
+    bottom: 25px; /* Απόσταση από κάτω */
+    right: 25px;  /* Απόσταση από δεξιά */
+    width: 45px;
+    height: 45px;
+    background-color: rgba(20, 20, 20, 0.8); /* Σκούρο, ημιδιαφανές φόντο για να "δένει" */
+    color: var(--accent); /* Το neon ροζ σου */
+    border: 1px solid var(--border-primary); /* Το διακριτικό περίγραμμα που έχουμε παντού */
+    border-radius: 50%; /* Στρογγυλό */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1000; /* Για να είναι πάντα πάνω από το περιεχόμενο */
+    
+    /* Transitions για ομαλότητα */
+    transition: all 0.3s ease;
+    
+    /* Αρχικά κρυμμένο */
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Εφέ στο Hover */
+.back-to-top:hover {
+    background-color: var(--accent); /* Γεμίζει με ροζ στο hover */
+    color: #111; /* Το βέλος γίνεται σκούρο */
+    transform: translateY(-3px); /* Μικρή κίνηση προς τα πάνω */
+    box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4); /* Neon glow εφέ */
+}
+
+/* Κλάση που θα προσθέτει το JS για να το εμφανίσει */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ρύθμιση για ομαλό σκρολάρισμα (αν δεν το έχεις ήδη) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- GALLERY SECTION --- */
+.gallery-subtitle {
+    text-align: center;
+    color: #888;
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    border: 1px solid var(--border-primary);
+    transition: transform 0.4s ease, opacity 0.5s ease;
+}
+
+/* Ασπρόμαυρο Vintage Φίλτρο στις εικόνες */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.5s ease;
+}
+
+/* Hover: Παίρνει χρώμα και ζουμάρει */
+.gallery-item:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* Hover Overlay με κείμενο */
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    /* ΚΡΙΣΙΜΟ: Επιτρέπει στο κλικ να περάσει στην εικόνα από κάτω */
+    pointer-events: none; 
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.gallery-action {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.gallery-item.hidden-item {
+    display: none;
+    opacity: 0;
+}
+
+/* --- LIGHTBOX (ΜΕΓΑΛΟ ΠΑΡΑΘΥΡΟ) --- */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 40px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(8px); /* Μοντέρνο blur εφέ στο background */
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    animation-name: zoomIn;
+    animation-duration: 0.35s;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--accent); /* Παίρνει το χρώμα της neon λεπτομέρειάς σου */
+}
+
+.lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #aaa;
+    padding: 20px 0;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* --- ΒΕΛΑΚΙΑ ΠΛΟΗΓΗΣΗΣ LIGHTBOX --- */
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    z-index: 2010; /* Πάνω από τη φωτογραφία */
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2); /* Διακριτικό background */
+}
+
+/* Τοποθέτηση αριστερά και δεξιά */
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+/* Hover εφέ στα βελάκια */
+.lightbox-arrow:hover {
+    color: var(--accent); /* Γίνεται ροζ/neon */
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Mobile responsive προσαρμογή για να μην κρύβουν τη φωτογραφία σε μικρές οθόνες */
+@media (max-width: 768px) {
+    .lightbox-arrow {
+        font-size: 30px;
+        padding: 10px 15px;
+        background-color: rgba(0, 0, 0, 0.5); /* Πιο σκούρο σε mobile για να φαίνονται */
+    }
+    .lightbox-prev { left: 5px; }
+    .lightbox-next { right: 5px; }
+}
+
+body {
+    /* Αντικαθιστά τον κέρσορα σε όλο το site. 
+       Το 'auto' στο τέλος είναι το fallback (αν δεν φορτώσει η εικόνα) */
+    cursor: url('../images/guitar.png'), auto;
+}
+
+/* Επειδή στα links, κουμπιά κλπ. ο browser αλλάζει αυτόματα τον κέρσορα σε "χεράκι" (pointer), 
+   πρέπει να του πούμε να κρατήσει την κιθάρα αν το θέλεις, ή να βάλουμε μια εναλλακτική (π.χ. κιθάρα με εφέ) */
+a, button, .lightbox-trigger {
+    cursor: url('../images/guitar.png'), pointer; 
+    /* Αν δεν έχεις δεύτερη εικόνα, βάλε την ίδια: url('image/guitar-cursor.png'), pointer; */
+}
+
+body {
+    /* Το 0 0 σημαίνει ότι το κλικ γίνεται στην πάνω αριστερή γωνία της εικόνας */
+    cursor: url('../images/guitar.png') 0 0, auto;
+    
+    /* Αν θέλεις το κλικ να γίνεται στο κέντρο μιας εικόνας 32x32: */
+    /* cursor: url('image/guitar-cursor.png') 16 16, auto; */
+}

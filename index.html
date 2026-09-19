@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Argiris Karalis">
+    <title>Loading...</title>
+    
+    <script>
+        (function() {
+            // 1. Παίρνουμε τη γλώσσα του browser (π.χ. "el", "el-GR", "en-US", "en")
+            const userLang = navigator.language || navigator.userLanguage; 
+            
+            // 2. Μετατρέπουμε σε πεζά και κρατάμε μόνο τα 2 πρώτα γράμματα
+            const shortLang = userLang.toLowerCase().substring(0, 2);
+            
+            // 3. Κάνουμε το redirect
+            if (shortLang === 'el') {
+                window.location.href = './el/index.html';
+            } else {
+                window.location.href = './en/index.html';
+            }
+        })();
+    </script>
+
+    <!-- Fallback: Αν η JS είναι κλειστή, στείλε τον στο αγγλικό μετά από 2 δευτερόλεπτα -->
+    <noscript>
+        <meta http-serif="refresh" content="2;url=./en/index.html">
+    </noscript>
+</head>
+<body>
+    <!-- Μια clean minimal ένδειξη σε περίπτωση που αργήσει το redirect -->
+    <div style="font-family: sans-serif; text-align: center; margin-top: 20%; color: #1a2a3a;">
+        <p>Loading / Ανακατεύθυνση...</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Υπόδειξη της θέσης του sitemap
+Sitemap: 
