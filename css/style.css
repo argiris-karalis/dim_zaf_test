@@ -91,7 +91,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.5rem 5%;
+	padding: 0 20px;
 	position: fixed;
 	width: 100%;
 	top: 0;
@@ -99,6 +99,7 @@ header {
 	backdrop-filter: blur(8px);
 	z-index: 1000;
 	border-bottom: 1px solid var(--border-primary);
+	height: 70px;
 }
 
 .logo {
@@ -296,8 +297,11 @@ header {
 	flex-grow: 1;
 }
 
+.gig-title{
+	color: var(--text-light);
+}
+
 .gig-venue {
-	font-weight: bold;
 	color: var(--text-light);
 }
 
@@ -485,7 +489,7 @@ header {
 /* Footer & Socials */
 footer {
 	text-align: center;
-	padding: 4rem;
+	padding: 2rem;
 	background-color: var(--bg-footer);
 	border-top: 1px solid var(--border-footer);
 }
@@ -507,6 +511,16 @@ footer {
 footer p {
 	color: var(--text-dark-muted);
 	font-size: 0.9rem;
+    margin-top: 1rem;      /* από 2rem το μειώνουμε στο 1rem */
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;    /* ελαφρώς μικρότερο κείμενο */
+    line-height: 1.3;
+}
+
+.developer-credit {
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+    font-size: 0.9rem;
 }
 
 /* Container για όλο το footer contact τμήμα */
@@ -1096,7 +1110,7 @@ footer p {
 
 /* Ρυθμίσεις για την εικόνα του logo */
 .logo-img {
-    height: 80px; /* Ή όποιο ύψος έχεις ορίσει τώρα */
+    height: 40px; /* Ή όποιο ύψος έχεις ορίσει τώρα */
     width: 300px;
     display: block;
     transition: transform 0.3s ease;
@@ -1406,7 +1420,7 @@ html {
     transition: all 0.3s ease;
     z-index: 2010; /* Πάνω από τη φωτογραφία */
     border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.2); /* Διακριτικό background */
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Τοποθέτηση αριστερά και δεξιά */
@@ -1420,7 +1434,7 @@ html {
 
 /* Hover εφέ στα βελάκια */
 .lightbox-arrow:hover {
-    color: var(--accent); /* Γίνεται ροζ/neon */
+    color: var(--accent);
     background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -1429,29 +1443,74 @@ html {
     .lightbox-arrow {
         font-size: 30px;
         padding: 10px 15px;
-        background-color: rgba(0, 0, 0, 0.5); /* Πιο σκούρο σε mobile για να φαίνονται */
+        background-color: rgba(0, 0, 0, 0.5);
     }
     .lightbox-prev { left: 5px; }
     .lightbox-next { right: 5px; }
 }
 
 body {
-    /* Αντικαθιστά τον κέρσορα σε όλο το site. 
-       Το 'auto' στο τέλος είναι το fallback (αν δεν φορτώσει η εικόνα) */
     cursor: url('../images/guitar.png'), auto;
 }
 
-/* Επειδή στα links, κουμπιά κλπ. ο browser αλλάζει αυτόματα τον κέρσορα σε "χεράκι" (pointer), 
-   πρέπει να του πούμε να κρατήσει την κιθάρα αν το θέλεις, ή να βάλουμε μια εναλλακτική (π.χ. κιθάρα με εφέ) */
 a, button, .lightbox-trigger {
     cursor: url('../images/guitar.png'), pointer; 
-    /* Αν δεν έχεις δεύτερη εικόνα, βάλε την ίδια: url('image/guitar-cursor.png'), pointer; */
 }
 
 body {
-    /* Το 0 0 σημαίνει ότι το κλικ γίνεται στην πάνω αριστερή γωνία της εικόνας */
     cursor: url('../images/guitar.png') 0 0, auto;
-    
-    /* Αν θέλεις το κλικ να γίνεται στο κέντρο μιας εικόνας 32x32: */
-    /* cursor: url('image/guitar-cursor.png') 16 16, auto; */
+}
+
+.legal-content-container {
+    padding-top: 100px; /* Προσαρμόστε ανάλογα με το ύψος του header σας */
+    padding-bottom: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.legal-content-container h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.last-updated {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.legal-section {
+    margin-bottom: 2.5rem;
+}
+
+.legal-section h2 {
+    font-size: 1.4rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.copyright-block {
+    background-color: var(--border-secondary); /* ελαφρύ φόντο για διαχωρισμό */
+    border-left: 4px solid #333;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.copyright-block h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.legal-section ul {
+    padding-left: 1.2rem;
+}
+
+.legal-section li {
+    margin-bottom: 0.5rem;
 }
