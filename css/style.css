@@ -298,6 +298,7 @@ header {
 }
 
 .gig-title{
+	font-weight: bold;
 	color: var(--text-light);
 }
 
