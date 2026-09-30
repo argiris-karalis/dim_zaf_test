@@ -231,3 +231,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('gearModal');
+    const modalImg = document.getElementById('gearModalImg');
+    const captionText = document.getElementById('gearModalCaption');
+    const closeBtn = document.querySelector('.gear-modal-close');
+
+    // Προσθήκη event Listener σε όλα τα items της λίστας
+    document.querySelectorAll('.gear-list li').forEach(item => {
+        item.addEventListener('click', () => {
+            const imgSrc = item.getAttribute('data-img');
+            const gearTitle = item.querySelector('.gear-name').innerText;
+
+            if (imgSrc) {
+                modalImg.src = imgSrc;
+                captionText.innerText = gearTitle;
+                modal.style.display = 'flex';
+            }
+        });
+    });
+
+    // Κλείσιμο με κλικ στο κουμπί (X)
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Κλείσιμο με κλικ έξω από την εικόνα
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Κλείσιμο με το πλήκτρο ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modal.style.display = 'none';
+        }
+    });
+});
