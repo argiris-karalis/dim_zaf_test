@@ -112,11 +112,44 @@
 		<!-- Δεξί Μέρος: Φωτογραφία -->
 		<div class="about-img">
 			<img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=800&q=80" alt="Δημήτρης Ζαφειρέλης">
-            <div class="gear-list">
-                <h4>My Main Gear 🎸</h4>
-                <p>Fender Stratocaster (1979), Gibson Les Paul Standard, Kemper Profiler, Strymon Pedals.</p>
+            <div class="gear-card">
+                <div class="gear-header">
+                    <h4>My Main Gear <span class="gear-icon">🎸</span></h4>
+                </div>
+                <div class="gear-card">
+                    <ul class="gear-list">
+                        <li data-img="../images/gear/gibson125tcd.png">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">Gibson 125 TCD</span>
+                        </li>
+                        <li data-img="../images/gear/OVATIONCustomLegend.jpg">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">OVATION Custom Legend</span>
+                        </li>
+                        <li data-img="../images/gear/FELIPEilektroklassiki.webp">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">FELIPE Electroclassical</span>
+                        </li>
+                        <li data-img="../images/gear/klassiki.webp">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">Thomopoulos-Kotzampopoulos Mandmade Classical</span>
+                        </li>
+                        <li data-img="../images/gear/ROLAND707.webp">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">ROLAND 707</span>
+                        </li>
+                        <li data-img="../images/gear/FENDERTremolux.jpg">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">Amplifier FENDER Tremolux</span>
+                        </li>
+                        <li data-img="../images/gear/korg.png">
+                            <span class="gear-bullet"></span>
+                            <span class="gear-name">KORG Effects Pedal</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-		</div>
+        </div>
 	</div>
 
 	<!-- Κάτω Μέρος: Το Έργο (Responsive Πίνακας) -->
@@ -506,6 +539,13 @@
     
     <img class="lightbox-content" id="lightbox-img">
     <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
+<!-- Modal Pop-up για τις φωτογραφίες -->
+<div id="gearModal" class="gear-modal">
+    <span class="gear-modal-close">&times;</span>
+    <img class="gear-modal-content" id="gearModalImg" alt="Gear Image">
+    <div id="gearModalCaption" class="gear-modal-caption"></div>
 </div>
 
 <!-- JS Αρχείο -->
